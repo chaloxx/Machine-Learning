@@ -1,0 +1,23 @@
+                   Práctica 0
+                  -----------
+
+Ej1: El programa genera samples mediante una distribución normal y cuyos centros son
+     (1,1,...,1) y (-1,-1,...,-1).
+     Para compilar linkear con la biblioteca math.h: gcc ej1.c -lm.
+     Para correr: ./nombre-del-ejecutable n d c
+        *) n es el número de samples
+        *) d es la dimensión del espacio a la cuál pertenecen los samples
+        *) c es una constante
+
+Ej2: El programa genera samples mediante una distribución normal y sus 2 centros se ingresan por
+    teclado.
+     Para compilar: gcc ej2.c -lm -lreadline y los parámetros para correr el programa
+    son los mismos que el ejercicio anterior.
+
+Ej3: El programa genera samples mediante una distribución uniforme en coordenadas polares  y el punto de referencia
+    se ingresa por comando.
+     Para compilar: gcc ej3.c -lm.
+     Para ejecutar: ./nombre-del-ejecutable n x y
+    *) n es la cantidad de samples que se quieren generar
+    *) x es la coordenada sobre el eje x del punto de referencia
+    *) y es la coordenada sobre el eje y del punto de referencia
