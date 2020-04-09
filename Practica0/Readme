@@ -1,0 +1,13 @@
+                   Práctica 0
+                  -----------
+
+Ej1: El programa genera samples mediante una distribución normal y cuyos centros son
+     (1,1,...,1) y (-1,-1,...,-1).
+     Para compilar linkear con la biblioteca math.h: gcc ej1.c -lm.
+     Para correr: ./nombre-del-ejecutable n d c
+        *) n es el número de samples
+        *) d es la dimensión del espacio a la cuál pertenecen los samples
+        *) c es una constante
+    Cada vez que el programa se ejecuta se generan los archivos clase0.R y clase1.R.
+    Luego corriendo ej1.R, se genera un gráfico con los datos.
+    Para poder chequear 
