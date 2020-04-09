@@ -1,6 +1,0 @@
-include(clase0.R)
-include(clase1.R)
-library(mvtnorm)
-library(plot3D)
-plot(col_0,col_1,col = "green")
-points(col_2,col_3, col = "red")
