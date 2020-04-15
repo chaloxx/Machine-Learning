@@ -62,18 +62,15 @@ void genPoints(int d, int n, double desvEst, double mean, double vals[][d+1], in
 }
 
 
-int writeNames(int n){
+int writeNames(int d){
   FILE *fptr = fopen("ej1.names","w");
   if (fptr == NULL){
     printf("Error\n");
     return 1;
   }
-  for(int i = 0;i < n;i++){
-    fprintf(fptr, "%d",i);
-    if (i+1 < n) fprintf(fptr,",");
-  }
-  fprintf(fptr, ".\n");
-  for(int i = 0; i < n;i++)
+
+  fprintf(fptr, "0,1.\n");
+  for(int i = 0; i < d;i++)
     fprintf(fptr, "x%d:continuous.\n",i);
   fclose(fptr);
   return 0;
@@ -90,20 +87,17 @@ int writeEntries(int n, int d, double entries[n][d+1]){
   for(int i = 0; i < n;i++)
 
     for(int j = 0; j < d+1; j++){
-      fprintf(fptr,"%f",entries[i][j]);
-      if(j < d)fprintf(fptr,",");
-      else fprintf(fptr, "\n");
+      // Valor de coordenada
+      if(j < d)fprintf(fptr,"%f,",entries[i][j]);
+      // Clase
+      else fprintf(fptr, "%d\n",(int)entries[i][j]);
     }
+
   fclose(fptr);
   return 0;
 }
 
 
-// Agregar clase a la matriz de valores
-void addClass(int d,int n, double class,double vals[n][d+1]){
-  for(int i = 0; i < n; i++)
-      vals[i][d] = class;
-}
 
 
 int main(int argc, char** argv){
@@ -116,10 +110,18 @@ int main(int argc, char** argv){
    srand(time(&t));
    //constante
    double c = atof(argv[3]);
-   //cantidad de samples, dimensión
+   // dimensión,cantidad de samples
    int d = atoi(argv[2]), n = atoi(argv[1]);
+   if (d < 1){
+     printf("El número de dimensiones tiene que ser mayor o igual a 1\n");
+     return 1;
+   }
+   if (n < 0){
+     printf("El número de samples tiene que ser mayor a 0\n");
+     return 1;
+   }
    if (n % 2 != 0){
-     printf("Error. El número de samples tiene que ser un número par\n");
+     printf("Error. La cantidad de samples tiene que ser un número par\n");
      return 1;
    }
    double desvEst = c*sqrt(d);

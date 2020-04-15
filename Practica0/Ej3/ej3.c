@@ -24,29 +24,28 @@ double floatRanGen(double leftLim, double rightLim){
 
 
 
-bool pred1(double r, double theta){
-  return r >= theta / (4*M_PI) && r <= (theta+M_PI)/(4*M_PI);
+double func1(double r){
+  return floatRanGen(r*4*M_PI-M_PI,r*4*M_PI);
 }
 
-bool pred2(double r, double theta){
-  return  r < theta / (4*M_PI) && r >(theta-M_PI)/(4*M_PI);
+double func2(double r){
+  return floatRanGen(r*4*M_PI,r*4*M_PI+M_PI);
 }
 
 
-void genPolarCoord(double xOrigen,double yOrigen,double* vals,bool (*pred) (double,double), double class){
-  double r = 0, theta = 0;
-  do{
-    r = floatRanGen(0,1); // Generar radio entre 0 y 1
-    theta = floatRanGen(-COTA,COTA); // Generamos un ángulo en términos de radianes
-  }while(!pred(r,theta));
-  vals[0] = xOrigen +  r * cos(theta) ; // Coordenada x
-  vals[1] = yOrigen +  r * sin(theta); // Coordenada
+void genCoord(double xOrigen,double yOrigen,double* vals,double (*func) (double), double class){
+  double r = 0, theta = 0,x = 0,y = 0;
+  r =  sqrt(floatRanGen(0,1));
+  theta = func(r) ; // Generamos un ángulo en términos de radianes
+  vals[0] = xOrigen + r*cos(theta); // Coordenada x
+  vals[1] = yOrigen + r*sin(theta); // Coordenada y
   vals[2] = class;
 }
 
-void showRes(int n, int d, double vals[n][d+1], char* path){
-  printf("%s\n",path);
-  FILE* fptr = fopen(path,"w");
+
+
+void showRes(int n, int d, double vals[n][d+1]){
+  FILE* fptr = fopen("ej3.R","w");
   if (fptr ==  NULL) {
     printf("Error\n");
     return;
@@ -59,6 +58,16 @@ void showRes(int n, int d, double vals[n][d+1], char* path){
     }
     fprintf(fptr,")\n");
   }
+  fprintf(fptr, "r <- seq(from = 0, to = 1, by = 0.01)\n" \
+                 "g <- r*4*pi - pi\n" \
+                 "x <- r*cos(g)\n" \
+                 "y <- r*sin(g)\n" \
+                "plot(x,y,type = \"l\", col = \"red\")\n" \
+                "g <- r*4*pi\n" \
+                "x <- r*cos(g)\n" \
+                "y <- r*sin(g)\n" \
+                "points(x,y,type = \"l\", col = \"blue\")\n" \
+                "points(col_0,col_1)");
   fclose(fptr);
 }
 
@@ -75,31 +84,25 @@ int writeEntries(int n, int d, double entries[n][d+1]){
   for(int i = 0; i < n;i++)
 
     for(int j = 0; j < d+1; j++){
-      fprintf(fptr,"%f",entries[i][j]);
-      if(j < d)fprintf(fptr,",");
-      else fprintf(fptr, "\n");
+      if(j < d)fprintf(fptr,"%f,",entries[i][j]);
+      else fprintf(fptr, "%d\n",(int)entries[i][j]);
     }
+
   fclose(fptr);
   return 0;
 }
 
-void addClass(int d,int n, double class,double vals[n][d+1]){
-  for(int i = 0; i < n; i++)
-      vals[i][d] = class;
-}
 
-int writeNames(int n){
+
+int writeNames(int d){
   FILE *fptr = fopen("ej3.names","w");
   if (fptr == NULL){
     printf("Error\n");
     return 1;
   }
-  for(int i = 0;i < n;i++){
-    fprintf(fptr, "%d",i);
-    if (i+1 < n) fprintf(fptr,",");
-  }
-  fprintf(fptr, ".\n");
-  for(int i = 0; i < n;i++)
+
+  fprintf(fptr, "0,1.\n");
+  for(int i = 0; i < d;i++)
     fprintf(fptr, "x%d:continuous.\n",i);
   fclose(fptr);
   return 0;
@@ -121,8 +124,8 @@ int main(int argc, char** argv){
   int i = 0;
   writeNames(2);
   for(; i < n/2;i++)
-      genPolarCoord(xOrigen,yOrigen,vals[i],pred1,0);
-  for(; i < n;i++)
-      genPolarCoord(xOrigen,yOrigen,vals[i],pred2,1);
+      genCoord(xOrigen,yOrigen,vals[i],func1,0);
+  for(; i < n ;i++)
+      genCoord(xOrigen,yOrigen,vals[i],func2,1);
   writeEntries(n,2,vals);
 }

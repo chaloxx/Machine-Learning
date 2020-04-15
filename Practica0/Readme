@@ -9,9 +9,9 @@ Ej1: El programa genera samples mediante una distribución normal y cuyos centro
         *) d es la dimensión del espacio a la cuál pertenecen los samples
         *) c es una constante
 
-Ej2: El programa genera samples mediante una distribución normal y sus 2 centros se ingresan por
-    teclado.
-     Para compilar: gcc ej2.c -lm -lreadline y los parámetros para correr el programa
+Ej2: El programa genera samples mediante una distribución normal y sus 2 centros de distribución
+    son (1,0,...,0) y (-1,0,...,0).
+     Para compilar: gcc ej2.c -lm y los parámetros para correr el programa
     son los mismos que el ejercicio anterior.
 
 Ej3: El programa genera samples mediante una distribución uniforme en coordenadas polares  y el punto de referencia

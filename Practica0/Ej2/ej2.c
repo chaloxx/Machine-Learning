@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
-#include <readline/readline.h>
-#include <readline/history.h>
 
 
 double aux(int pot){
@@ -69,18 +67,15 @@ void genPoints(int d, int n, double desvEst, double means[d], double vals[][d+1]
 }
 
 
-int writeNames(int n){
+int writeNames(int d){
   FILE *fptr = fopen("ej2.names","w");
   if (fptr == NULL){
     printf("Error\n");
     return 1;
   }
-  for(int i = 0;i < n;i++){
-    fprintf(fptr, "%d",i);
-    if (i+1 < n) fprintf(fptr,",");
-  }
-  fprintf(fptr, ".\n");
-  for(int i = 0; i < n;i++)
+
+  fprintf(fptr, "0,1.\n");
+  for(int i = 0; i < d;i++)
     fprintf(fptr, "x%d:continuous.\n",i);
   fclose(fptr);
   return 0;
@@ -97,10 +92,10 @@ int writeEntries(int n, int d, double entries[n][d+1]){
   for(int i = 0; i < n;i++)
 
     for(int j = 0; j < d+1; j++){
-      fprintf(fptr,"%f",entries[i][j]);
-      if(j < d)fprintf(fptr,",");
-      else fprintf(fptr, "\n");
+      if(j < d)fprintf(fptr,"%f,",entries[i][j]);
+      else fprintf(fptr, "%d\n",(int)entries[i][j]);
     }
+
   fclose(fptr);
   return 0;
 }
@@ -116,10 +111,6 @@ void showRes(int n, int d, double vals[n][d+1]){
   }
 }
 
-void addClass(int d,int n, double class,double vals[n][d+1]){
-  for(int i = 0; i < n; i++)
-      vals[i][d] = class;
-}
 
 
 
@@ -129,36 +120,31 @@ int main(int argc, char** argv){
       return 0;
    }
    time_t t;
-   //Inicializar generador con
+   //Inicializar generador
    srand(time(&t));
    //constante
    double desvEst = atof(argv[3]);
-   //cantidad de samples, dimensión
+   //dimensión, cantidad de samples
    int d = atoi(argv[2]), n = atoi(argv[1]);
-   // Ingresar centros de distribución
+   if (d < 1){
+     printf("El número de dimensiones tiene que ser mayor o igual a 1\n");
+     return 1;
+   }
+   if (n < 0){
+     printf("El número de samples tiene que ser mayor a 0\n");
+     return 1;
+   }
+   if (n % 2 != 0){
+     printf("Error. La cantidad de samples tiene que ser un número par\n");
+     return 1;
+   }
+   // Centros de distribución
    double fstMean[d], sndMean[d];
-   char* line = readline("Ingrese el primer centro de la distribución:");
-   char* token = strtok(line," ");
-   int i = 0;
-   while(token != NULL && i < d){
-     fstMean[i] = atof(token);
-     token = strtok(line," ");
-     i++;
-   }
-   if (i != d){
-     printf("Error\n");
-   }
-  line = readline("\nIngrese el segundo centro de la distribución:");
-  token = strtok(line," ");
-  i = 0;
-   while(token != NULL && i < d){
-     sndMean[i] = atof(token);
-     token = strtok(line," ");
-     i++;
-   }
-   if (i != d){
-     printf("Error\n");
-   }
+   fstMean[0] = 1; sndMean[0] = -1;
+   // LLenar con 0s el resto de las componentes
+   for(int i = 1;i < d;i++)
+     fstMean[i] = sndMean[i] = 0;
+
    writeNames(d);
    double vals[n][d+1];
    genPoints(d,n/2,desvEst,fstMean,vals,1);
