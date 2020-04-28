@@ -1,0 +1,9 @@
+
+C4.5 [release 8] decision tree generator	Mon Apr 20 10:08:51 2020
+----------------------------------------
+
+    Options:
+	File stem <paralelo>
+	Trees evaluated on unseen cases
+
+ERROR:  cannot open file paralelo.names

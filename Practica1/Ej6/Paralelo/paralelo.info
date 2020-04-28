@@ -1,0 +1,55 @@
+
+C4.5 [release 8] decision tree generator	Wed Apr 22 16:17:29 2020
+----------------------------------------
+
+    Options:
+	File stem <paralelo>
+	Trees evaluated on unseen cases
+
+Read 250 cases (5 attributes) from paralelo.data
+
+Decision Tree:
+
+x0 <= -1.333 :
+|   x1 > -2.501 : 1 (70.0/9.0)
+|   x1 <= -2.501 :
+|   |   x0 > -2.464 : 0 (4.0)
+|   |   x0 <= -2.464 :
+|   |   |   x4 <= -1.52 : 0 (2.0)
+|   |   |   x4 > -1.52 : 1 (5.0)
+x0 > -1.333 :
+|   x1 <= -3.115 : 0 (19.0)
+|   x1 > -3.115 :
+|   |   x3 <= 3.282 : 0 (136.0/48.0)
+|   |   x3 > 3.282 :
+|   |   |   x0 <= 1.36 : 1 (9.0)
+|   |   |   x0 > 1.36 :
+|   |   |   |   x1 <= 1.555 : 1 (3.0/1.0)
+|   |   |   |   x1 > 1.555 : 0 (2.0)
+
+
+Tree saved
+
+
+Evaluation on training data (250 items):
+
+	 Before Pruning           After Pruning
+	----------------   ---------------------------
+	Size      Errors   Size      Errors   Estimate
+
+	  17   58(23.2%)     17   58(23.2%)    (29.3%)   <<
+
+Evaluation on test data (10000 items):
+
+	 Before Pruning           After Pruning
+	----------------   ---------------------------
+	Size      Errors   Size      Errors   Estimate
+
+	  17  3770(37.7%)     17  3770(37.7%)    (29.3%)   <<
+
+
+	  (a)  (b)	<-classified as
+	 ---- ----
+	 3944 1056	(a): class 0
+	 2714 2286	(b): class 1
+

@@ -1,0 +1,840 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{tikz}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Trabajo práctico 1: Árboles de decisión}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Alumno:Pablo Alonso}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Ej 4)
+\end_layout
+
+\begin_layout Standard
+Al clasificar el conjunto de test generado con cada árbol, se obtuvieron
+ los siguientes resultados:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej4/g1.png
+	display false
+	width 16cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Claramente se observa que al aumentar el tamaño del training set, obtenemos
+ una mejor clasificación de los datos en nuestro universo.
+ Esto se debe a que training sets de mayor tamaño reflejan mejor el concepto
+ que buscamos que nuestro clasificador aprenda sobre el universo en el cual
+ estamos trabajando.
+ ¿Por qué? Sabemos que el algoritmo de construcción del árbol no es más
+ que una búsqueda dentro del espacio de posibles hipótesis que expliquen
+ el concepto que observamos en nuestro universo (osea la separación de las
+ clases).
+ Dado que en cada paso de la búsqueda determinamos el correspondiente nodo
+ del árbol (el atributo que más ganancia de información brinda) usando medidas
+ estádisticas sobre el conjunto total de los datos, lo que ocurre es que
+ conjuntos de mayor tamaño brindan una información más precisa sobre lo
+ que realmente ocurre en el universo, es decir que tenemos mayor información
+ para decidir cuál es el mejor nodo (o sea cuál es el mejor atributo a testear)
+ en cada paso.
+ Parece natural entonces que a medida que corramos el algoritmo con conjuntos
+ de entrenamieno de mayor tamaño, la búsqueda sea más precisa y que la hipótesis
+ obtenida por el algoritmo sea más próxima al concepto que se quiere aprender.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Ej 5)
+\end_layout
+
+\begin_layout Standard
+Primero hacemos el experimento sobre los datos diagonales:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej5/ej5-1.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Por un lado se observa que las variables no dan la suficiente ganancia de
+ información como para poder clasificar correctamente todos los datos de
+ entrenamiento, por lo que se opta por devolver el valor esperado por los
+ mismos.
+ A medida que el tamaño del training set aumenta, el porcentaje de datos
+ mal clasificados se mantiene entre ciertos valores.
+\end_layout
+
+\begin_layout Standard
+Por otro lado el test error va mejorando porque training sets de mayor tamaño
+ reflejan mejor lo que pasa en nuestro universo y permiten encontrar una
+ mejor hipótesis.
+\end_layout
+
+\begin_layout Standard
+El test error permanece mayor que el training error para los training sets
+ más chicos por la dispersión que hay en los datos pero convergen a un valor
+ parecido a medida que el tamaño del training set se acerca a el tamaño
+ del test set.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej5/ej5-2.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En la gráfica se observa que para algunos valores de x, la hipótesis que
+ nos devuelve el algoritmo es más general (menos nodos 
+\begin_inset Formula $\eqcirc$
+\end_inset
+
+ reglas más chicas) y para otros más específica (más nodos 
+\begin_inset Formula $\eqcirc$
+\end_inset
+
+ reglas más grandes).
+ A medida que el conjunto de entrenamiento se vuelve más grande, el algoritmo
+ necesita encontrar una hipótesis cada vez más específica y compleja para
+ aprender de los datos de entrenamiento, lo que se refleja en una cantidad
+ mayor de nodos.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ahora repetimos el experimento para los datos paralelos:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej5/ej5-11.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Los errores son muy parecidos.
+ Esto se debe a que al haber poca dispersión en los datos, bastan training
+ sets relativamente chicos para obtener hipótesis que se parezcan al concepto
+ buscado.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej5/ej5-12.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Para los datos paralelos, los árboles se mantienen muy pequeños.
+ Si tenemos en cuenta que el test error y el training error son prácticamente
+ iguales en todos los casos, se podría concluir que se encuentran hipótesis
+ muy sencillas que justifiquen estos datos.
+\end_layout
+
+\begin_layout Standard
+En conclusión, las diferencias encontradas en las hipótesis que obtuvimos
+ a trávez de los datos paralelos y diagonales se debe a la dispersión que
+ hay en las distribuciones.
+ Los árboles encontrados en los datos diagonales tienen mayor desviación
+ estándar, son mucho más complejos y se necesita training sets de mayor
+ tamaño para lograr test errors tan bajos como en los datos paralelos.
+ Teniendo en cuenta que las curvas obtenidas son after pruning, los resultados
+ obtenidos están libres de sobreajuste, lo que se ve reflejado en la constante
+ mejora de test error para ambos casos.
+\end_layout
+
+\begin_layout Subsection*
+Ej 6)
+\end_layout
+
+\begin_layout Standard
+Se grafican los resultados obtenidos:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej6/ej6-1.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Para obtener los errores mínimos usé un clasificador bayesiano y determiné
+ para cada punto en el test si es más probable clasificar ese punto como
+ de clase 0 o 1, luego el error es el número de puntos mal clasificados
+ sobre el tamaño del test.
+ Cuando el árbol reciba como entrada un punto que es determinado como mal
+ clasificado con el método anterior, su salida tambíen será errónea puesto
+ que los valores de las coordenadas del punto se ajustan más a las condiciones
+ impuestas por un camino en el árbol que conduzca a la clase equivocada.
+ De esta manera nos aseguramos de que el error que obtuvimos al aplicar
+ el proceso a el test completo es mínimo pues al menos esos puntos siempre
+ serán mal clasificados.
+\end_layout
+
+\begin_layout Standard
+Comparando los resultados obtenidos en la gráfica, primero se observa que
+ los errores sobre los datos diagonales son mayores que los datos paralelos,
+ esto debido a que la desviación estándar es mayor por un factor de 
+\begin_inset Formula $\sqrt{5}$
+\end_inset
+
+.
+ Esta diferencia también se observa en las curvas de error mínimo aunque
+ menos pronunciada.
+ Luego las curvas before-after pruning en ambos casos son prácticamente
+ iguales, esto nos indica que el aumento de dispersión no causa sobreajuste
+ porque la misma dispersión está presente en los training set.
+ Por último, también se observa que la diferencia entre los errores mínimos
+ y los reales también están causados por la dispersión de los datos pues
+ en el caso de los datos paralelos los errores reales que se cometen son
+ prácticamente el mínimo error que se puede cometer, mientras que en los
+ datos diagonales hay una diferencia que se mantiene constante.
+\end_layout
+
+\begin_layout Subsection*
+Ej 7)
+\end_layout
+
+\begin_layout Standard
+Hacemos el experimento para las dos clases y graficamos los resultados obtenidos
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej7/ej7-1.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En los datos diagonales se observa un menor training error contra un mayor
+ test error a medidad que se incrementa la dimensionalidad.
+ También hay que tener en cuenta que la desviación estándar en este caso,
+ al dejar la constante c fija, depende de su dimensionalidad, por lo tanto
+ a mayor dimensionalidad también se obtiene una mayor desviación estándar.
+ Se observa que obtenemos hipótesis que se ajustan cada vez mejor al training
+ data pero funcionan cada vez peor sobre los test data.
+ 
+\end_layout
+
+\begin_layout Standard
+En los datos paralelos, la diferencia es mucho menor.
+ En este caso el aumento de la dimensionalidad baja el training error pero
+ no mejora el test error, ya que este se mantiene prácticamente igual en
+ todas las dimensiones.
+ La conclusión en este caso es que si se deja una desviación estándar fija
+ pero se aumenta la dimensionalidad se obtienen mejoras en el training error
+ pero no en test error.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Ej 8)
+\end_layout
+
+\begin_layout Standard
+Primero graficamos las clases:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej8/ej8-1.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El árbol más simple que clasifica correctamente todos los puntos es el siguiente
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzset{   
+\end_layout
+
+\begin_layout Plain Layout
+
+treenode/.style =  {shape=rectangle, rounded corners,draw,align=center,top
+ color=white, bottom color=blue!20},                  
+\end_layout
+
+\begin_layout Plain Layout
+
+root/.style     = {treenode, font=
+\backslash
+Large, bottom color=blue!20},
+\end_layout
+
+\begin_layout Plain Layout
+
+env/.style      = {treenode, font=
+\backslash
+ttfamily
+\backslash
+normalsize},   dummy/.style    = {circle,draw} }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}   [     grow= down,
+\end_layout
+
+\begin_layout Plain Layout
+
+                            sibling distance= 6em,
+\end_layout
+
+\begin_layout Plain Layout
+
+                            level distance= 10em,
+\end_layout
+
+\begin_layout Plain Layout
+
+                            edge from parent/.style = {draw, -latex},
+\end_layout
+
+\begin_layout Plain Layout
+
+                            every node/.style = {font=
+\backslash
+footnotesize},
+\end_layout
+
+\begin_layout Plain Layout
+
+                            sloped   ]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node [env] {X0}     
+\end_layout
+
+\begin_layout Plain Layout
+
+     child { node [env] {X1} 
+\end_layout
+
+\begin_layout Plain Layout
+
+             child {node [env] {1}
+\end_layout
+
+\begin_layout Plain Layout
+
+             edge from parent node [below]{ $
+\backslash
+leq$ 0}}
+\end_layout
+
+\begin_layout Plain Layout
+
+             child { node [env] {0}
+\end_layout
+
+\begin_layout Plain Layout
+
+             edge from parent node [below]{> 0}}
+\end_layout
+
+\begin_layout Plain Layout
+
+             edge from parent node [below] { $
+\backslash
+leq$ 0} }
+\end_layout
+
+\begin_layout Plain Layout
+
+    child { node [env] {X1} 
+\end_layout
+
+\begin_layout Plain Layout
+
+             child {node [env] {0}
+\end_layout
+
+\begin_layout Plain Layout
+
+             edge from parent node [below]{ $
+\backslash
+leq$ 0}}
+\end_layout
+
+\begin_layout Plain Layout
+
+             child { node [env] {1}
+\end_layout
+
+\begin_layout Plain Layout
+
+             edge from parent node [below]{> 0}}
+\end_layout
+
+\begin_layout Plain Layout
+
+             edge from parent node [below] {> 0} }
+\end_layout
+
+\begin_layout Plain Layout
+
+   
+\end_layout
+
+\begin_layout Plain Layout
+
+; 
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En contraste, el árbol que C4.5 devuelve solo tiene el siguiente nodo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzset{   
+\end_layout
+
+\begin_layout Plain Layout
+
+treenode/.style =  {shape=rectangle, rounded corners,draw,align=center,top
+ color=white, bottom color=blue!20},                  
+\end_layout
+
+\begin_layout Plain Layout
+
+root/.style     = {treenode, font=
+\backslash
+Large, bottom color=blue!20},
+\end_layout
+
+\begin_layout Plain Layout
+
+env/.style      = {treenode, font=
+\backslash
+ttfamily
+\backslash
+normalsize},   dummy/.style    = {circle,draw} }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}   [     grow= down,
+\end_layout
+
+\begin_layout Plain Layout
+
+                            sibling distance= 6em,
+\end_layout
+
+\begin_layout Plain Layout
+
+                            level distance= 10em,
+\end_layout
+
+\begin_layout Plain Layout
+
+                            edge from parent/.style = {draw, -latex},
+\end_layout
+
+\begin_layout Plain Layout
+
+                            every node/.style = {font=
+\backslash
+footnotesize},
+\end_layout
+
+\begin_layout Plain Layout
+
+                            sloped   ]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node [env] {0}     
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+   
+\end_layout
+
+\begin_layout Plain Layout
+
+; 
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se observa que el árbol que devuelve C4.5 consiste en un solo nodo, es decir
+ la clase 0.
+ Si corremos C4.5 con la opción -v i (i 
+\begin_inset Formula $\in$
+\end_inset
+
+{1,2,3}), el verbose nos informa de que ninguna de las variables tiene suficient
+e ganancia de información y no se pueden hacer splits de los datos.
+ Entonces se aplica el caso base que es devolver la clase con mayor frecuencia.
+ Como tenemos la misma cantidad de observaciones de cada clase es igual
+ que el algoritmo determine que la clase esperada es 0 o 1 porque siempre
+ obtendremos el 50% de error.
+\end_layout
+
+\begin_layout Standard
+Mientras que un humano es capaz de encontrar un árbol que no comete errores,
+ el algoritmo solo encuentra uno que resuelve bien la mitad de los casos.
+\end_layout
+
+\end_body
+\end_document

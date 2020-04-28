@@ -1,0 +1,41 @@
+
+C4.5 [release 8] decision tree generator	Wed Apr 22 16:15:14 2020
+----------------------------------------
+
+    Options:
+	File stem <diagonal>
+	Trees evaluated on unseen cases
+
+Read 250 cases (5 attributes) from diagonal.data
+
+Decision Tree:
+
+x1 <= -1.50385 : 1 (100.0/37.0)
+x1 > -1.50385 : 0 (150.0/62.0)
+
+
+Tree saved
+
+
+Evaluation on training data (250 items):
+
+	 Before Pruning           After Pruning
+	----------------   ---------------------------
+	Size      Errors   Size      Errors   Estimate
+
+	   3   99(39.6%)      3   99(39.6%)    (43.0%)   <<
+
+Evaluation on test data (10000 items):
+
+	 Before Pruning           After Pruning
+	----------------   ---------------------------
+	Size      Errors   Size      Errors   Estimate
+
+	   3  4342(43.4%)      3  4342(43.4%)    (43.0%)   <<
+
+
+	  (a)  (b)	<-classified as
+	 ---- ----
+	 3339 1661	(a): class 0
+	 2681 2319	(b): class 1
+
