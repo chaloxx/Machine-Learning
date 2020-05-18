@@ -1,0 +1,1078 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Trabajo práctico 2 : Redes neuronales}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Alumno: Pablo Alonso}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+a) 
+\end_layout
+
+\begin_layout Standard
+Para carectizar el valor de cada red, se tomó el error en test dado por
+ la red que da el mínimo en validación.
+ La siguiente tabla muestra la mediana de los valores de cada red para cada
+ valor de momentum y learning-rate, entrenando 20 redes distintas para cada
+ configuración y grabando los resultados cada 200 épocas:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="10" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Momentum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Learning-rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Test Error (%)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.9
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+18
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17.3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.01
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17.4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.01
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.01
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17.3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.001
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+21.3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.001
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19.3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.001
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+18
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se observa que las mejores configuraciónes son momentum 0.5 y learning-rate
+ 0.01 o momentum 0 y learning-rate 0.1.
+ A continuación, graficamos los mse para ambas configuraciones:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename dos_elipses/a.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename dos_elipses/b.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se observa primero que el error sobre test es menor que el error en entrenamient
+o y validación en ambos casos.
+ Esto puede deberse a que, para este problema, los patrones de test son
+ fáciles de resolver comparados con los de entrenamiento y validación.
+\end_layout
+
+\begin_layout Standard
+En la primer gráfica, es decenso es más agresivo y dado que no hay momentum,
+ la red pasa por todos los mínimos que encuentra, generando los picos de
+ erros que se observan.
+\end_layout
+
+\begin_layout Standard
+En la segunda gráfica, el descenso es mucho más leve y tiende a esquivar
+ mínimos locales por el término de momentum agregado.
+ Este mismo término le permite hacer un grandes descensos cuando encuentra
+ superficies más planas en el espacio de soluciones.
+\end_layout
+
+\begin_layout Subsection*
+b)
+\end_layout
+
+\begin_layout Standard
+Para cada distribución de los patrones se entrenaron 20 redes distintas.
+ Para caracterizar cada red se tomó el mse en test del mínimo en validación.
+ De los 20 resultados se toma el mínimo en cada caso.
+ Las gráficas presentadas a continuación corresponden a dichas redes:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ikeda/b1.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ikeda/b2.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ikeda/b3.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lo primero que se nota es que hacer validación con el conjunto obtenido
+ en el primer caso no nos da certeza sobre el error de test.
+ De hecho si no guiámos por el MSE de validación, entrenaríamos la red hasta
+ el final.
+ Sin embargo en el gráfico se observa que la red se sobreajusta, por lo
+ que se deduce que el conjunto de validación no está representando correctamente
+ el concepto que queremos aprender.
+ 
+\end_layout
+
+\begin_layout Standard
+Se observa un resultado mucho mejor para una distribución de 75%-25% pues
+ en este caso se observa que podríamos dejar de correr el algoritmo en cuanto
+ notemos el incremento de MSE sobre el conjunto de validación, ya que efectivame
+nte la red se sobreajusta a los datos de entrenamiento.
+ 
+\end_layout
+
+\begin_layout Standard
+Para una distribución 50%-50%, claramente obtenemos resultados parecidos
+ entre verificación y test, el problema en este caso sería la pérdida de
+ patrones para entrenamiento.
+\end_layout
+
+\begin_layout Standard
+En conclusión, lo mejor es usar aproximademente un 25% de los patrones de
+ entrenamiento para validación.
+\end_layout
+
+\begin_layout Subsection*
+c) 
+\end_layout
+
+\begin_layout Standard
+Para valores de 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ menores a 
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+ se observa sobreajuste y para valores mayores el algoritmo no converge
+ a ninguna solución pues el error oscila aleatoriamente.
+ Tomando 
+\begin_inset Formula $\gamma=10^{-5}$
+\end_inset
+
+ se observan los siguientes resultados: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ssp/10^-5/c.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ssp/10^-5/c2.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se observa que las curvas en la primer gráfica coinciden con la segunda:
+ cuando la red alcanza un mínimo, el término de penalización se estabiliza
+ y permanece prácticamente constante.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ssp/10^-5/d.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Haciendo la comparación con el método de validación para el mismo problema,
+ se observa que usando el método de weight-decay evitamos el sobreajuste.
+\end_layout
+
+\begin_layout Standard
+Se analiza el siguiente caso para un valor de gamma que causa sobreajuste:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ssp/c3.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El sobreajuste en este caso está producido por un crecimiento desmesurado
+ en los pesos.
+ Si se observa en la implementación, la regla de actualización es 
+\begin_inset Formula $w_{ij}\leftarrow w_{ij}(1-2\eta\gamma)+\eta\delta x_{ij}$
+\end_inset
+
+.
+ Por lo que para gamma muy chico, 
+\begin_inset Formula $w_{ij}$
+\end_inset
+
+ es mayor.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ssp/c4.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Obviamente, en este caso la penalización se ve mucho más afectada.
+\end_layout
+
+\begin_layout Subsection*
+d)
+\end_layout
+
+\begin_layout Standard
+La configuración del net en ambos problemas es la siguiente:
+\end_layout
+
+\begin_layout Standard
+*) Capa intermedia: 10 nodos
+\end_layout
+
+\begin_layout Standard
+*) Learning-rate:0.001
+\end_layout
+
+\begin_layout Standard
+*) Momentum: 0.3
+\end_layout
+
+\begin_layout Standard
+*) Validación: 20% de los patrones en .data
+\end_layout
+
+\begin_layout Standard
+Para cada red se toman el MSE del train y el test de el mínimo en validación.
+ A continuación, los resultados obtenidos:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename gausianas/paralelo.png
+	display false
+	width 10cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename gausianas/diagonal.png
+	display false
+	width 10cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se observa que, a diferencia de los árboles, las redes no son afectadas
+ por la dimensionalidad.
+ Esto se debe a que las redes son mucho más expresiva en el sentido de que
+ cada entrada tiene sus propios pesos para llevar la información a la siguiente
+ capa.
+ En los árboles se necesitan mucho más datos para poder determinar los cortes
+ necesarios en cada eje.
+ En consecuencia, en las redes el sobreajuste es mucho menor.
+\end_layout
+
+\begin_layout Subsection*
+e)
+\end_layout
+
+\begin_layout Standard
+En un principio, existen 2 métodos distintos:
+\end_layout
+
+\begin_layout Standard
+1) Con una neurona en la capa de salida para cada valor posible como clase:
+ Como ventaja los pesos extras de cada neurona en la capa de salida le dan
+ más flexibilidad al modelo.
+ La contra es que también se multiplican la cantidad de pesos a ajustar.
+ También fue necesario encontrar una función que calcule la predicción de
+ la red.
+ Mitcell sugiere tomar la neurona que devuelva el output más alto, pero
+ para los problemas de este trabajo resultó mejor tomar la neurona con un
+ output más cercano a uno.
+\end_layout
+
+\begin_layout Standard
+2) Con una sola neurona en la capa de salida: Como ventaja existen menos
+ pesos para ajustar, pero también esto le resta expresividad a la red.
+ Otro problema que surgió fue como determinar la predicción de acuerdo al
+ output.
+ 
+\end_layout
+
+\begin_layout Standard
+En esta práctica el primer método dio resultados mucho mejores que el segundo
+ así que se optó por aplicar el primer método mencionado.
+\end_layout
+
+\begin_layout Standard
+Se aplicó el algoritmo al dataset iris con la siguiente configuración:
+\end_layout
+
+\begin_layout Standard
+*) Learning-rate: 0.01
+\end_layout
+
+\begin_layout Standard
+*) Momentum: 0.3
+\end_layout
+
+\begin_layout Standard
+*) Validación: No se usa
+\end_layout
+
+\begin_layout Standard
+Se grafican los resultados obtenidos:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename iris/e1.png
+	display false
+	width 10cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename iris/e2.png
+	display false
+	width 10cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ahora se aplica a faces con la siguiente configuración:
+\end_layout
+
+\begin_layout Standard
+*) Learning-rate: 0.3
+\end_layout
+
+\begin_layout Standard
+*) Momentum: 0.3
+\end_layout
+
+\begin_layout Standard
+*) Capa oculta: 3 nodos
+\end_layout
+
+\begin_layout Standard
+Esta configuración es la que usa Mitchell en su ejemplo.
+ A continuación se muestran los resultados:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename faces/a.png
+	display false
+	width 10cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Con la configuración anterior se observan resultados con alrededor del 90%
+ de precisión tal y como menciona Mitchell.
+ Se observan mejores resultados aumentando el número de neuronas en la capa
+ oculta a 10, con un learning-rate de 0.001 y un momentum de 0.9:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename faces/b.png
+	display false
+	width 10cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Con la configuración anterior se logra una precisión del 93% en general
+ comparado con el 90% que menciona Mitchell.
+\end_layout
+
+\begin_layout Subsection*
+f)
+\end_layout
+
+\begin_layout Standard
+Los resultados obtenidos en el problema de sunspots son los siguientes:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ssp2/f.png
+	display false
+	width 10cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se observa que para batches de 10 y 20 se evitan algunos mínimos locales
+ y para un batch de 10 se logra incluso mejores resultados.
+\end_layout
+
+\end_body
+\end_document
