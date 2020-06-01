@@ -1,0 +1,784 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Práctica 3: Clasificadores Bayesianos}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Alumno: Pablo Alonso}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+1) 
+\end_layout
+
+\begin_layout Standard
+Ver código fuente: Ej1/naive_bayes.c.
+\end_layout
+
+\begin_layout Subsection*
+2)
+\end_layout
+
+\begin_layout Standard
+A continuación, se grafican los resultados obtenidos:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej2/diagonal/diagonal.png
+	display false
+	width 10cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lo primero que se observa es que Naive Bayes no tiene el problema de la
+ dimensionalidad que encontramos en los árboles, ya que considera la probabilida
+d bajo cada una de las dimensiones de los datos para calcular la probabilidad
+ final de una hipótesis mientras que, como ya hemos visto en prácticas anteriore
+s, los árboles deben aprender los cortes necesarios en cada una de las dimension
+es y para esto necesitan una mayor cantidad de datos.
+\end_layout
+
+\begin_layout Standard
+Se nota que las curvas de train y test de las redes se aproximan bastante.
+ Esto se puede explicar con el hecho de que las redes buscan una hipótesis
+ que reduzca la suma de errores cuadrados y esto, como se explica en Mitchell,
+ es equivalente a encontrar la hipótesis más probable que explique los datos
+ que es lo que hace Naive Bayes.
+ Es decir que intentan resolver el mismo problema.
+ Las curvas de Naive Bayes son aún mejores que las de las redes porque este
+ modelo tiene la ventaja de modelar la distribución subyacente de los datos
+ y los únicos datos que no va a poder clasificar correctamente son aquellos
+ que se encuentra más cerca del centro de la distribución a la que no pertenecen.
+ En otras palabras, los errores de Naive Bayes en este caso surgen en las
+ intersecciones de las dos distribuciones.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej2/paralelo/paralelo.png
+	display false
+	width 10cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En la segunda gráfica se vuelve a observar lo explicado anteriormente.
+ Además se nota que tanto para redes como para Naive Bayes, el problema
+ diagonal y el paralelo son el mismo problema, mientra que para los árboles
+ que ambas distribuciones estén separadas por el eje y causa que el error
+ se duplique.
+ 
+\end_layout
+
+\begin_layout Subsection*
+3)
+\end_layout
+
+\begin_layout Standard
+Primero resolvemos el problema de dos_elipses:
+\end_layout
+
+\begin_layout Standard
+Para correr la red se usaron los siguientes parámetros:
+\end_layout
+
+\begin_layout Itemize
+Learning-rate: 0.01
+\end_layout
+
+\begin_layout Itemize
+Momentum: 0.5
+\end_layout
+
+\begin_layout Itemize
+Nodos en la capa intermedia: 6
+\end_layout
+
+\begin_layout Itemize
+Validación: 20% de los patrones del .data
+\end_layout
+
+\begin_layout Itemize
+Épocas: 40000
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ahora vamos a ver las predicciones hechas por ambos modelos:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej3/dos_elipses/dos_elipses.png
+	display false
+	width 14cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Para las redes se alcanza una precisión del 96% y para Naive Bayes apenas
+ un 75%.
+ El problema de Naives Bayes aquí es que ,por un lado, la probabilidad a
+ priori de no pertenecer a las elipses es muy alta comparado con la probabilidad
+ de pertenecer a las mismas.
+ Por otro lado, nuestro algoritmo de Naive Bayes calcula la probabilidad
+ normal de forma independiente para cada feature.
+ Este cálculo se ve afectado por 2 factores: el promedio y la varianza.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej3/dos_elipses/entrenamiento.png
+	display false
+	width 10cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Prestando atención a los datos que usamos para entrenar nuestro modelo Naive
+ Bayes, se puede observar que la media para ambas clases es prácticamente
+ el origen de coordenadas mientras que la varianza en los puntos fuera de
+ las elipses es mayor que la de aquellos que están por adentro.
+ En consecuencia, dado el desbalance que causa la probabilidad a priori
+ y la influencia que la varianza causa la probabilidad normal de no pertenecer
+ a las elipses, causa que todos los puntos se clasifiquen como fuera de
+ las elipses.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ahora vamos a resolver el problema de las espirales anidadas.
+\end_layout
+
+\begin_layout Standard
+Para correr la red se usaron los siguientes parámetros:
+\end_layout
+
+\begin_layout Itemize
+Learning-rate: 0.01
+\end_layout
+
+\begin_layout Itemize
+Momentum:0.5
+\end_layout
+
+\begin_layout Itemize
+Nodos en la capa intermedia: 10
+\end_layout
+
+\begin_layout Itemize
+Validación: 20% de los patrones del .data
+\end_layout
+
+\begin_layout Itemize
+Épocas: 40000
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En la siguiente gráfica se observan las predicciones realizadas por ambos
+ modelos:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej3/espirales/espirales.png
+	display false
+	width 8cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En este caso las redes alcanzan una precisión del 85% mientras que Naive
+ Bayes tiene una precisión del 58 % apróx.
+ Lo que llama la atención es el corte que hace Naive Bayes en el círculo
+ de radio 1.
+ Acá nuevamente la elección del algoritmo se basa en el cálculo de la probabilid
+ad normal.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej3/espirales/entrenamiento.png
+	display false
+	width 8cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nuevamente mirando los datos de entrenamiento, se puede deducir que aunque
+ la varianza en este caso es la misma, el promedio no lo es, ya que en una
+ zona del círculo la densidad de la clase 0 (puntos amarillos) es mayor
+ que la clase 1 (puntos violetas) y en la otra zona se da el caso contrario.
+ Se deduce entonces que la decisión del algoritmo se ve influenciada en
+ este caso por la distancia a los promedios de cada clase, tomando como
+ clase aquella cuyo promedio es más cercano y produciendo el corte ya mencionado.
+ Dado que la probabilidad a priori es la misma para ambas clases, no resulta
+ en un factor influyente.
+\end_layout
+
+\begin_layout Standard
+En conclusión de lo que se vio hasta ahora, aproximando con funciones normales,
+ Naive Bayes no funciona bien si la distribución de los datos no es normal
+ sino uniforme como en estos problemas.
+\end_layout
+
+\begin_layout Subsection*
+4)
+\end_layout
+
+\begin_layout Standard
+Sobre el código:
+\end_layout
+
+\begin_layout Itemize
+Ver comentarios en implementación.
+\end_layout
+
+\begin_layout Itemize
+Se usó un 20% de los datos para validación.
+\end_layout
+
+\begin_layout Itemize
+Se asumió que todas las variables tenián la misma cantidad de valores discretos.
+\end_layout
+
+\begin_layout Itemize
+Se agregó un parámetro LÍMITE (máxima distancia al 0 que puede tomar una
+ variable).
+\end_layout
+
+\begin_layout Standard
+Primero se discuten los resultados para dos elipses.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej4/dos_elipses/predicciones.png
+	display false
+	width 8cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se logra una precisión del 95%, comparado con el 75% alcanzado en el punto
+ anterior.
+ Al optimizar el número de bins, se obtiene una gran precisión en las estadístic
+as de los histogramas construidos.
+ En vez de usar el cálculo de la función normal en la cual influian el promedio
+ y la varianza , en este caso las elecciones se hacen de acuerdo a estos
+ histogramas, de los cuales se extrae una mejor información, ya que al crear
+ segmentos en las variables continuas se calcula una probabilidad de acuerdo
+ al segmento de la variable y a la clase.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej4/dos_elipses/errores.png
+	display false
+	width 8cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Analizando las curvas de aprendizaje de Naive Bayes Discreto, se observa
+ sobreajuste cuando la cantidad de bins es lo suficientemente grande.
+ Esto quiere decir que al construir histogramas con demasiados intervalos,
+ la probabilidad que el histograma almacena para estos intervalos solo se
+ ajusta a los datos con el cual entrenamos el modelo, aumentando la probabilidad
+ de predecir de forma errónea nuevos datos que no hallan sido vistos antes.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej4/espirales/predicciones.png
+	display false
+	width 8cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En las espirales se repite el panorama que ya analizamos antes.
+ Naive Bayes Discreto obtiene una precisión del 70% comparado con el 58%
+ obtenido con Naive Bayes Continuo.
+ Cabe destacar que si bien hay una mejora significativa, la discretización
+ pierde eficacia cuando las clases tienen curvas como en este caso.
+ Eso se explica con el hecho de que al hacer particiones en ambas dimensiones,
+ se divide el espacio de puntos en cuadrados, a partir de los cuales hacemos
+ la clasificación.
+ Al hacerlo sobre clases que representan curvas en el espacio hay una obvia
+ pérdida de información dentro de cada cuadrado.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej4/espirales/errores.png
+	display false
+	width 8cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Al analizar los errores, nuevamente vemos el panorama que observamos en
+ 2 elipses: cuando el número de bins es demasiado grande, los cuadrados
+ en el espacio se vuelven demasiado pequeños y se ajustan demasiado a los
+ puntos con los cuales entrenamos el modelo, por lo que no clasifican correctame
+nte puntos que no sean los ya mencionados.
+\end_layout
+
+\begin_layout Subsubsection*
+5)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej5/espirales/predicciones.png
+	display false
+	width 10cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La precisión alcanzada con este versión del algoritmo de Bayes es entre
+ 87% y 90%.
+ El avance que hicimos para lograr esta muy significativa mejora fue medir
+ estadísticamente los valores discretos de las variables como haciamos antes,
+ pero no solo de acuerdo a las clases sino considerando todos los atributos
+ al mismo tiempo.
+ La ventaja con respecto al método anterior, es que se guarda la información
+ de todos los aspectos del problema.
+ Es decir, al fijar un valor discreto antes solo considerábamos el valor
+ que tomaba la clase, ahora consideramos todos los posibles valores que
+ toman el resto de los atributos y las clases también, guardando una probabilida
+d para cada caso particular.
+ La ganancia de esto es que nuestro modelo se flexibiliza y, como vemos
+ en la gráfica, con esto se supera bastante el problema de las curvas que
+ surge cuando consideramos que los atributos son independientes.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej5/espirales/errores.png
+	display false
+	width 8cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En las curvas de aprendaje se observa mayor sobreajuste aún que en el ejercicio
+ anterior.
+ Esto también es esperable pues medimos más aspectos que en el ejercicio
+ anterior.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Un problema de implementación puede ser como elegir representar una combinación
+ de valores discretos que condicionen a un determinado feature.
+ Por ejemplo para P(
+\begin_inset Formula $X_{1}/X_{2},..X_{n},h$
+\end_inset
+
+), ¿cómo representar las posibles combinaciones de valores de 
+\begin_inset Formula $X_{1}..X_{n},h$
+\end_inset
+
+ ? Si se implementa un modelo que indexe por cada uno de los valores discretos
+ de cada variable, se puede obtener un modelo que solo sirva para cierta
+ dimensionalidad.
+ Lo que hice en mi caso fue asumir que todas las variables tenian un número
+ fijo de valores discretos posibles y pensar 
+\begin_inset Formula $X_{2}..X_{n}h$
+\end_inset
+
+ como una cifra en una base de ese número, calcular su equivalente en base
+ decimal y usarlo para hacer la última indexación en un arreglo de 3 dimensiones.
+ De esta forma se soluciona el problema de la indexación.
+ 
+\end_layout
+
+\begin_layout Standard
+Otro problema es la cantidad de veces que se necesita recorrer los patrones
+ de entrenamiento para poder calcular las probabilidades condicionales (1
+ recorrido por cada atributo).
+ Para problemas de grandes dimensiones esto puede resultar muy lento.
+\end_layout
+
+\begin_layout Subsubsection*
+6)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej6/dos_elipses/predicciones1.png
+	display false
+	width 10cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El resultado obtenido tuvo una presición del 96.3% superando lo que habíamos
+ logrado en ejercicios anteriores.
+ La mejora que hace este algoritmo de discretización es dividir los rangos
+ de valores de cada variable de forma que cada segmento tenga la menor incertidu
+mbre posible.
+ De esta forma la probabilidad calculada para cada valor discreto que toma
+ un feature es más pura porque hay menos pérdida de información.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej6/dos_elipses/predicciones2.png
+	display false
+	width 10cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Llama la atención que usar Bayes No Ingenuo con discretización recursiva
+ dé malos resultados.
+\end_layout
+
+\end_body
+\end_document
