@@ -1,0 +1,560 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Práctica 4:K-Vecinos}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Alumno:Pablo Alonso}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+a) 
+\end_layout
+
+\begin_layout Standard
+Mirar comentarios en código fuente EjA/knn.c.
+\end_layout
+
+\begin_layout Subsection*
+b)
+\end_layout
+
+\begin_layout Standard
+Analizamos primero el caso de las espirales sin ruido:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej1/espirales_ruido/no_ruido.png
+	display false
+	width 14cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Para KNN el error fue de 8.8% con 4 vecinos validando con un 20% de los datos.
+ Para C4.5 el error fue de 13.8% y el árbol tiene un tamaño de 111 nodos.
+\end_layout
+
+\begin_layout Standard
+Se observa en este problema claramente una ventaja al considerar una función
+ de target que sea local.
+ La ventaja está dada por la apoximación que ofrece la votación entre los
+ 4 vecinos más cercanos a un punto.
+ Es decir, si la mayoría de los 4 vecinos de un punto pertenecen a una espiral,
+ es muy probable que el punto que queremos clasificar también pertenezca
+ a dicha espiral porque dentro del plano, todos los individuos de una clase
+ están agrupados.
+ Además ,en este caso no hay ruido en las variables por lo cual la estimación
+ es muy buena.
+ En comparación, C4.5 realiza una serie de cortes sobre los ejes de acuerdo
+ así las variables dan información o no y no aprovecha el hecho de que los
+ individuos dentro de una clase en este problema están agrupados dentro
+ de las espirales.
+\end_layout
+
+\begin_layout Standard
+Como métodos de desempate se probo devolver la clase del punto más cercano
+ o rehacer la votación descartando al vecino más lejano, no encontrando
+ grandes diferencias en los resultados.
+ También se puede evitar la situación de empate ponderando los distancias
+ como se vió en la teoría.
+\end_layout
+
+\begin_layout Standard
+Ahora vamos a analizar el caso de las espirales con ruido:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej1/espirales_ruido/ruido.png
+	display false
+	width 14cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En esta caso, KNN tiene un error de 40% tomando 4 vecinos, mientras que
+ C4.5 logra un error de 22.5% con un árbol de 65 nodos.
+ Con este ejemplo queda claro lo susceptible que es KNN al ruido en las
+ variables ya que al calcular la distancia entre vecinos mezcla el ruido
+ con la información pertinente, en este caso mezcla la información dada
+ por las primeras 2 variables según las cuales los puntos son uniformes
+ sobre las espirales, con la información de las variables nuevas, según
+ las cuales los puntos siguen una distribución uniforme sobre un rectángulo.
+ C4.5 es más robusto a dicho ruido gracias a que discrimina cuáles son las
+ variables con más ganancia de información y cuáles no.
+ 
+\end_layout
+
+\begin_layout Subsection*
+c)
+\end_layout
+
+\begin_layout Standard
+Primero analizamos el problema diagonal:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej4/diagonal/diagonal.png
+	display false
+	width 10cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El primer detalle que se observa es que error sobre el conjunto de entrenamiento
+ para knn con k = 1 resulta ser 0.
+ Esto resulta así porque para cualquier punto dentro del training set, el
+ vecino más cercano resulta ser él mismo y la clasificación siempre será
+ correcta.
+ Si k>1 esto no siempre resulta así porque estamos considerando vecinos
+ que pueden no ser el punto que queremos clasificar.
+ 
+\end_layout
+
+\begin_layout Standard
+Para k = 1, los resultados en test son méjores que los árboles por que estos
+ necesitan más datos para aprender los cortes necesarios que deben realizar.
+ Notar que los errores en knn con k = 1 surgen siempre que un punto esté
+ dentro o cercano a la frontera de la intersección de las 2 distribuciones,
+ donde los puntos de ambas clases se mezclan y dónde el criterio puede fallar
+ porque el vecino más cercano al punto que queremos clasificar puede no
+ pertenecer a la clase correcta.
+ Claramente hay una corrección al considerar un k óptimo obtenido por validación
+, dado que por el agrupamiento de los indivuos de una misma clase, es más
+ probable que la mayoría de los k vecinos pertenezca a la clase correcta
+ que si comparamos un único vecinos.
+\end_layout
+
+\begin_layout Standard
+Para cualquier k en general, se observa un aumento en el porcentaje de error
+ a medida que agregamos dimensionalidad.
+ A diferencia de los otros métodos, nuestro espacio no se vacía porque el
+ target que estamos considerando no es global y no existe entrenamiento
+ previo.
+ Sin embargo, según la definición de distancia euclídea, al considerar más
+ dimensiones los puntos se alejan entre sí, porque consideramos puntos con
+ más componentes y puntos de una misma clase que en 2 dimensiones eran más
+ cercanos, en 4 dimensiones se alejan y puedan quedar más cercanos a puntos
+ de otra clase.
+ El efecto de esto es que confunde más al clasificador a medida que aumentamos
+ la dimensionalidad.
+ Sin embargo, comparando con redes y Naive Bayes, lo resultados para un
+ k obtenido por validación son muy buenos.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej4/paralelo/paralelo.png
+	display false
+	width 10cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se repite el panorama que ya habíamos observado.
+ Tomar un k obtenido por validación resulta mejor que tomar k=1.
+ En este caso, los resultados obtenidos por árboles suelen ser mejores que
+ los de knn porque, como ya vimos en prácticas anteriores, los árboles mejoran
+ mucho su performance al reducirse la cantidad de cortes que deben realizar
+ en la misma cantidad de datos, mientras que knn depende de la distancia
+ entre vecinos de una misma clase y no mejora demasiado comparado con el
+ problema diagonal.
+\end_layout
+
+\begin_layout Subsection*
+d)
+\end_layout
+
+\begin_layout Standard
+Sobre la implementación:
+\end_layout
+
+\begin_layout Itemize
+Mirar comentarios en EjD/knn.c
+\end_layout
+
+\begin_layout Itemize
+Se agegó un parámetro DIST MÁX: máxima distancia que va a medir el algoritmo.
+\end_layout
+
+\begin_layout Itemize
+Se calcula un parámetro DELTA: el algoritmo empieza tomando una distancia
+ 0 y va sumando DELTA en cada iteración hasta llega a DIST MÁX.
+\end_layout
+
+\begin_layout Itemize
+Para calcular DIST MÁX, tomamos la desviación estándar 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ del generador y calculamos la distancia entre el centro de la distribución
+ y la frontera: 
+\begin_inset Formula $\sqrt{N_{IN}*(5*\sigma)^{2}}$
+\end_inset
+
+, 
+\begin_inset Formula $N_{IN}$
+\end_inset
+
+ es la dimensión de los datos.
+\end_layout
+
+\begin_layout Itemize
+Para calcular DELTA, dividimos DIST MÁX por un término del orden 
+\begin_inset Formula $10^{3}$
+\end_inset
+
+o 
+\begin_inset Formula $10^{4}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej5/diagonal/diagonal.png
+	display false
+	width 10cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej5/paralelo/paralelo.png
+	display false
+	width 10cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se observan resultados muy similares al ejercicio anterior.
+ Lo que ocurre es que el problema de encontrar un k óptimo y una distancia
+ óptima, resultan en realidad ser el mismo problema, ya que la distancia
+ óptima deberá ser aquella que contenga los k vecinos más cercanos.
+ Para estos problemas resulta más lento encontrar la distancia óptima que
+ el k óptimo.
+\end_layout
+
+\begin_layout Subsection*
+e)
+\end_layout
+
+\begin_layout Standard
+Debido a la aleatoriedad presente en cada uno de los modelos, los resultados
+ se obtuvieron corriendo 20 veces ambos algoritmos y promediando los resultados
+ para obtener valores más representativos.
+\end_layout
+
+\begin_layout Standard
+Para las redes se usó la siguiente configuración:
+\end_layout
+
+\begin_layout Itemize
+6 unidades en la capa intermedia
+\end_layout
+
+\begin_layout Itemize
+20% de los datos para validación
+\end_layout
+
+\begin_layout Itemize
+10000 épocas
+\end_layout
+
+\begin_layout Itemize
+Learning-rate: 0.01
+\end_layout
+
+\begin_layout Itemize
+Momentum: 0.3
+\end_layout
+
+\begin_layout Itemize
+Se grabaron los resultados cada 200 épocas
+\end_layout
+
+\begin_layout Standard
+Para knn la configuración fue la siguiente:
+\end_layout
+
+\begin_layout Itemize
+20% de los datos para validación
+\end_layout
+
+\begin_layout Itemize
+Se consideró k
+\begin_inset Formula $\leq$
+\end_inset
+
+50
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej6/ssp/knn.png
+	display false
+	width 10cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej6/ssp/nn.png
+	display false
+	width 10cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se observan resultados relativamente parecidos con knn que con redes, consideran
+do que knn calcula una aproximación local mientras que las redes calculan
+ una aproximación que es global.
+ Es lógico que sobre el conjunto de entrenamiento en esta versión de knn
+ nos dé muy cercana a 0 dado que cada punto para el cual estemos haciendo
+ la predicción lo vamos a encontrar dentro de dicho conjunto y esto va a
+ pesar de manera muy significativa.
+\end_layout
+
+\begin_layout Standard
+Por otro lado, si agregáramos más épocas al entrenamiento sobre las redes
+ podríamos tener incluso mejores resultados que los vistos en la gráfica
+ de redes o incluso con la misma cantidad de épocas pero optimizando el
+ resto de los parámetros, mientras que en knn el único parámetro a optimizar
+ es la cantidad de vecinos cercanos que vamos a considerar a la hora de
+ calcular el target.
+ Esto nos dice que knn no deja de ser un modelo muy rígido comparado con
+ las redes y su mayor ventaja sea lo fácil que es implementarlo y que es
+ un método lazy, por lo cual no requiere un entrenamiento previo del modelo.
+\end_layout
+
+\end_body
+\end_document

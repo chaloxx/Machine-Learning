@@ -1,0 +1,410 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Práctica 4:K-Vecinos}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Alumno:Pablo Alonso}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+a) 
+\end_layout
+
+\begin_layout Standard
+Mirar comentarios en código fuente Ej1/knn.c.
+\end_layout
+
+\begin_layout Subsection*
+b)
+\end_layout
+
+\begin_layout Standard
+Analizamos primero el caso de las espirales sin ruido:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej1/espirales_ruido/no_ruido.png
+	display false
+	width 14cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Para KNN el error fue de 8.8% con 4 vecinos validando con un 20% de los datos.
+ Para C4.5 el error fue de 13.8% y el árbol tiene un tamaño de 111 nodos.
+\end_layout
+
+\begin_layout Standard
+Se observa en este problema claramente una ventaja al considerar una función
+ de target que sea local.
+ La ventaja está dada por la apoximación que ofrece la votación entre los
+ 4 vecinos más cercanos a un punto.
+ Es decir, si la mayoría de los 4 vecinos de un punto pertenecen a una espiral,
+ es muy probable que el punto que queremos clasificar también pertenezca
+ a dicha espiral porque dentro del plano, todos los individuos de una clase
+ están agrupados.
+ Además ,en este caso no hay ruido en las variables por lo cual la estimación
+ es muy buena.
+ En comparación, C4.5 realiza una serie de cortes sobre los ejes de acuerdo
+ así las variables dan información o no y no aprovecha el hecho de que los
+ individuos dentro de una clase siempre van a ser cercanos.
+\end_layout
+
+\begin_layout Standard
+Es importante observar también que, para KNN, en este caso la cantidad de
+ vecinos óptima fue de 4, por lo que la decisión que se tome para causar
+ un desempate podría ser influyente.
+ No es este el caso siempre y cuando el desempate sea una decisión del tipo
+ devolver la clase del punto más cercano o rehacer la votación descartando
+ al vecino más lejano, es decir siempre y cuando no se pierda información
+ en el método de elección.
+ También se puede evitar esta situación ponderando los distancias como se
+ vió en la teoría.
+\end_layout
+
+\begin_layout Standard
+Ahora vamos a analizar el caso de las espirales con ruido:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej1/espirales_ruido/ruido.png
+	display false
+	width 14cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En esta caso, KNN tiene un error de 40% tomando 4 vecinos, mientras que
+ C4.5 logra un error de 22.5% con un árbol de 65 nodos.
+ Con este ejemplo queda claro lo susceptible que es KNN al ruido en las
+ variables ya que al calcular la distancia entre vecinos mezcla el ruido
+ con la información pertinente, en este caso mezcla la información dada
+ por las primeras 2 variables según las cuales los puntos son uniformes
+ sobre las espirales, con la información de las variables nuevas, según
+ las cuales los puntos siguen una distribución uniforme sobre un rectángulo.
+ C4.5 es más robusto a dicho ruido gracias a que discrimina cuáles son las
+ variables con más ganancia de información y cuáles no.
+ 
+\end_layout
+
+\begin_layout Subsection*
+c)
+\end_layout
+
+\begin_layout Standard
+Primero analizamos el problema diagonal:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej4/diagonal/diagonal.png
+	display false
+	width 10cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El primer detalle que se observa es que el train para knn con k = 1 resulta
+ ser 0.
+ Esto resulta así porque estamos calculando el target local del training
+ set usando estos mismo puntos, por lo que el vecino más cercano a cualquier
+ punto resulta ser él mismo y la clasificación siempre será correcta.
+ Si k>1 esto no siempre resulta así porque estamos considerando vecinos
+ que pueden no ser el punto que queremos clasificar.
+ 
+\end_layout
+
+\begin_layout Standard
+Para k = 1, los resultados en test son méjores que los árboles por lo mismo
+ que ya observamos en el ejercicio b.
+ Notar que los errores surgen siempre que un punto esté dentro o cercano
+ a la frontera de la intersección de las 2 distribuciones, donde los puntos
+ de ambas clases se mezclan y dónde el criterio puede fallar porque el vecino
+ más cercano al punto que queremos clasificar puede no pertenecer a la clase
+ correcta.
+ Claramente hay una corrección al considerar un k óptimo obtenido por validación
+, dado que por el agrupamiento de los indivuos de una misma clase, es más
+ probable que la mayoría de los k vecinos pertenezca a la clase correcta
+ que si comparamos un único vecinos.
+\end_layout
+
+\begin_layout Standard
+Para cualquier k en general, se observa un aumento en el porcentaje de error
+ a medida que agregamos dimensionalidad.
+ Esto se debe a que, según la definición de distancia euclídea, al considerar
+ más dimensiones los puntos se alejan entre sí, porque consideramos puntos
+ con más componentes y puntos de una misma clase que en 2 dimensiones eran
+ más cercanos, en 4 dimensiones se alejan porque sus nuevas componentes
+ hacen crecer la distancia, con lo cual pueden quedar más cerca de puntos
+ de la otra clase.
+ El efecto de esto es que agrega una nueva fuente de errores a nuestro clasifica
+dor.
+ Sin embargo, comparando con redes y Naive Bayes, lo resultados para un
+ k obtenido por validación son muy buenos.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej4/paralelo/paralelo.png
+	display false
+	width 10cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se repite el panorama que ya habíamos observado.
+ Tomar un k obtenido por validación resulta mejor que tomar k=1.
+ En este caso, los resultados obtenidos por árboles suelen ser mejores porque
+ 
+\end_layout
+
+\begin_layout Subsection*
+d)
+\end_layout
+
+\begin_layout Standard
+Sobre la implementación:
+\end_layout
+
+\begin_layout Itemize
+Mirar comentarios en Ej4/knn.c
+\end_layout
+
+\begin_layout Itemize
+Se agegó un parámetro DIST MÁX: máxima distancia que va a medir el algoritmo.
+\end_layout
+
+\begin_layout Itemize
+Se agregó un parámetro DELTA: el algoritmo empieza con esta distancia y
+ va sumando DELTA en cada iteración hasta llega a DIST MÁX.
+\end_layout
+
+\begin_layout Itemize
+Para calcular DIST MÁX, tomamos la desviación estándar 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ del generador y calculamos la distancia entre el centro de la distribución
+ y la frontera: 
+\begin_inset Formula $\sqrt{d*(5*\sigma)^{2}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Para calcular DELTA, dividimos DIST MÁX por un término del orden 
+\begin_inset Formula $10^{3}$
+\end_inset
+
+o 
+\begin_inset Formula $10^{4}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej5/diagonal/diagonal.png
+	display false
+	width 10cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej5/paralelo/paralelo.png
+	display false
+	width 10cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
